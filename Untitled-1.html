@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Surprise! For You ❤️</title>
+    <style>
+        body {
+            background-color: #F8BBD0; /* สีชมพูพาสเทลสำหรับพื้นหลัง */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            transform: scale(1);
+            transition: transform 0.5s ease-in-out;
+        }
+        #enterButton {
+            background-color: #FF69B4;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.8em;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #enterButton:hover {
+            background-color: #FF1493;
+            transform: scale(1.05);
+        }
+        #surpriseContent {
+            display: none;
+            margin-top: 20px;
+            color: #FF1493;
+        }
+        #surpriseContent img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #surpriseContent h1, #surpriseContent p {
+            font-size: 2em;
+            margin-top: 15px;
+            color: #E00078;
+        }
+        .heart-icon {
+            color: #FF69B4;
+            font-size: 1.2em;
+            animation: bounce 0.8s infinite alternate;
+            display: inline-block;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        .container.show-surprise {
+            transform: scale(1.1);
+        }
+        .container.show-surprise img {
+            animation: fadeInScale 1s ease-out forwards;
+        }
+        .container.show-surprise h1 {
+            animation: fadeInScale 1.2s ease-out forwards;
+            animation-delay: 0.2s;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .flying-heart {
+            position: absolute;
+            color: #FF69B4;
+            font-size: 2em;
+            pointer-events: none;
+            animation: flyUp 4s ease-out forwards;
+            opacity: 0;
+            z-index: -1;
+        }
+        @keyframes flyUp {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.5);
+            }
+            20% { opacity: 1; }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) scale(1.5);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="mainContainer">
+    <button id="enterButton">
+        เปิดกล่องเลย! <span class="heart-icon">❤️</span>
+    </button>
+    <div id="surpriseContent">
+        <img src="https://pakmud.com/wp-content/uploads/2023/03/inlove-memes-15.jpg" alt="รูปภาพบอกความในใจ">
+        
+    </div>
+</div>
+<script>
+    document.getElementById('enterButton').addEventListener('click', function() {
+        this.style.display = 'none';
+        document.getElementById('surpriseContent').style.display = 'block';
+        document.getElementById('mainContainer').classList.add('show-surprise');
+        createFlyingHearts(10);
+    });
+    function createFlyingHearts(count) {
+        const container = document.body;
+        for (let i = 0; i < count; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('flying-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = (Math.random() * 2) + 's';
+            container.appendChild(heart);
+        }
+    }
+</script>
+</body>
+</html>
